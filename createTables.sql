@@ -112,7 +112,7 @@ CONSTRAINT repairs_pk PRIMARY KEY (problem)
 
 
 CREATE TABLE supplies(
-distributor_id INT NOT NULL,
+distributor_id VARCHAR(100) NOT NULL,
 part_name VARCHAR(100) NOT NULL,
 vehicle_make VARCHAR(100) NOT NULL,
 delivery_window INT, 
