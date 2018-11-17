@@ -294,6 +294,8 @@ insert into owns values(‘DEL-8888’, 1003);
 insert into owns values(‘P11-212A’, 1004);
 insert into owns values(‘WIM-BLE5’, 1004);
 
+
+#Please change insert scripts for maintenance table according to new table definition
 Insert into maintenance values (‘XYZ-5643’,’Suspension check’, ‘C’, 90452);
 Insert into maintenance values (‘XYZ-5643’,’Power steering check’, ‘C’, 90452);
 Insert into maintenance values (‘IRM-1212’, ‘Engine oil change’, ‘A’, 210452);
@@ -335,3 +337,172 @@ Insert into repair_services values (‘Piston replacement’, ‘Check engine light’);
 Insert into repair_services values (‘Gear box repair’, ‘Check engine light’);
 Insert into repair_services values (‘Camshaft replacement’, ‘Check engine light’);
 Insert into repair_services values (‘Valve replacement’, ‘Check engine light’);
+
+#Honda  
+
+insert into supplies values ( ‘D0001’, ‘Air Filter’,’Honda’,NULL);
+insert into supplies values ( ‘D0002’, ‘Air Filter’, ’Honda’,3);
+insert into supplies values ( ‘D0001’, ‘Axel Rod’, ’Honda’,5);
+insert into supplies values ( ‘D0002’, ‘Axel Rod’, ’Honda’,NULL);
+insert into supplies values ( ‘D0001’, ‘Battery’, ’Honda’,4);
+insert into supplies values ( ‘D0002’, ‘Battery’, ’Honda’,NULL);
+insert into supplies values ( ‘D0001’, ‘Brake Fluid’, ’Honda’,NULL);
+insert into supplies values ( ‘D0002’, ‘Brake Fluid’, ’Honda’,4);
+
+insert into supplies values ( ‘D0001’, ‘Brake Shoes’, ’Honda’,NULL);
+insert into supplies values ( ‘D0002’, ‘Brake Shoes’, ’Honda’,5);
+
+insert into supplies values ( ‘D0001’, ‘Camshaft’, ’Honda’,4);
+insert into supplies values ( ‘D0002’, ‘Camshaft’, ’Honda’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Catalytic converter’, ’Honda’,NULL);
+insert into supplies values ( ‘D0002’, ‘Catalytic converter’, ’Honda’,3);
+
+insert into supplies values ( ‘D0001’, ‘Coolant’, ’Honda’,NULL);
+insert into supplies values ( ‘D0002’, ‘Coolant’, ’Honda’,4);
+
+insert into supplies values ( ‘D0001’, ‘Drive belt’, ’Honda’,NULL);
+insert into supplies values ( ‘D0002’, ‘Drive belt’, ’Honda’,2);
+
+insert into supplies values ( ‘D0001’, ‘Engine oil’, ’Honda’,2);
+insert into supplies values ( ‘D0002’, ‘Engine oil’, ’Honda’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Gears’, ’Honda’,5);
+insert into supplies values ( ‘D0002’, ‘Gears’, ’Honda’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Light assembly’, ’Honda’,3);
+insert into supplies values ( ‘D0002’, ‘Light assembly’, ’Honda’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Oil Filter’, ’Honda’,4);
+insert into supplies values ( ‘D0002’, ‘Oil Filter’, ’Honda’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Piston’, ’Honda’,2);
+insert into supplies values ( ‘D0002’, ‘Piston’, ’Honda’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Power Steering Fluid’, ’Honda’,5);
+insert into supplies values ( ‘D0002’, ‘Power Steering Fluid’, ’Honda’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Spark plug’, ’Honda’,NULL);
+insert into supplies values ( ‘D0002’, ‘Spark plug’, ’Honda’,5);
+
+insert into supplies values ( ‘D0001’, ‘Suspension fluid’, ’Honda’,NULL);
+insert into supplies values ( ‘D0002’, ‘Suspension fluid’, ’Honda’,3);
+
+insert into supplies values ( ‘D0001’, ‘Valve’, ’Honda’,3);
+insert into supplies values ( ‘D0002’, ‘Valve’, ’Honda’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Wiper Fluid’, ’Honda’,NULL);
+insert into supplies values ( ‘D0002’, ‘Wiper Fluid’, ’Honda’,3);
+
+#Toyota
+
+insert into supplies values ( ‘D0001’, ‘Air Filter’,’Toyota’,NULL);
+insert into supplies values ( ‘D0002’, ‘Air Filter’, ’Toyota’,3);
+insert into supplies values ( ‘D0001’, ‘Axel Rod’, ’Toyota’,5);
+insert into supplies values ( ‘D0002’, ‘Axel Rod’, ’Toyota’,NULL);
+insert into supplies values ( ‘D0001’, ‘Battery’, ’Toyota’,4);
+insert into supplies values ( ‘D0002’, ‘Battery’, ’Toyota’,NULL);
+insert into supplies values ( ‘D0001’, ‘Brake Fluid’, ’Toyota’,NULL);
+insert into supplies values ( ‘D0002’, ‘Brake Fluid’, ’Toyota’,4);
+
+insert into supplies values ( ‘D0001’, ‘Brake Shoes’, ’Toyota’,NULL);
+insert into supplies values ( ‘D0002’, ‘Brake Shoes’, ’Toyota’,5);
+
+insert into supplies values ( ‘D0001’, ‘Camshaft’, ’Toyota’,4);
+insert into supplies values ( ‘D0002’, ‘Camshaft’, ’Toyota’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Catalytic converter’, ’Toyota’,NULL);
+insert into supplies values ( ‘D0002’, ‘Catalytic converter’, ’Toyota’,3);
+
+insert into supplies values ( ‘D0001’, ‘Coolant’, ’Toyota’,NULL);
+insert into supplies values ( ‘D0002’, ‘Coolant’, ’Toyota’,4);
+
+insert into supplies values ( ‘D0001’, ‘Drive belt’, ’Toyota’,NULL);
+insert into supplies values ( ‘D0002’, ‘Drive belt’, ’Toyota’,2);
+
+insert into supplies values ( ‘D0001’, ‘Engine oil’, ’Toyota’,2);
+insert into supplies values ( ‘D0002’, ‘Engine oil’, ’Toyota’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Gears’, ’Toyota’,5);
+insert into supplies values ( ‘D0002’, ‘Gears’, ’Toyota’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Light assembly’, ’Toyota’,3);
+insert into supplies values ( ‘D0002’, ‘Light assembly’, ’Toyota’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Oil Filter’, ’Toyota’,4);
+insert into supplies values ( ‘D0002’, ‘Oil Filter’, ’Toyota’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Piston’, ’Toyota’,2);
+insert into supplies values ( ‘D0002’, ‘Piston’, ’Toyota’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Power Steering Fluid’, ’Toyota’,5);
+insert into supplies values ( ‘D0002’, ‘Power Steering Fluid’, ’Toyota’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Spark plug’, ’Toyota’,NULL);
+insert into supplies values ( ‘D0002’, ‘Spark plug’, ’Toyota’,5);
+
+insert into supplies values ( ‘D0001’, ‘Suspension fluid’, ’Toyota’,NULL);
+insert into supplies values ( ‘D0002’, ‘Suspension fluid’, ’Toyota’,3);
+
+insert into supplies values ( ‘D0001’, ‘Valve’, ’Toyota’,3);
+insert into supplies values ( ‘D0002’, ‘Valve’, ’Toyota’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Wiper Fluid’, ’Toyota’,NULL);
+insert into supplies values ( ‘D0002’, ‘Wiper Fluid’, ’Toyota’,3);
+
+#Nissan
+insert into supplies values ( ‘D0001’, ‘Air Filter’,’Nissan’,NULL);
+insert into supplies values ( ‘D0002’, ‘Air Filter’, ’Nissan’,3);
+insert into supplies values ( ‘D0001’, ‘Axel Rod’, ’Nissan’,5);
+insert into supplies values ( ‘D0002’, ‘Axel Rod’, ’Nissan’,NULL);
+insert into supplies values ( ‘D0001’, ‘Battery’, ’Nissan’,4);
+insert into supplies values ( ‘D0002’, ‘Battery’, ’Nissan’,NULL);
+insert into supplies values ( ‘D0001’, ‘Brake Fluid’, ’Nissan’,NULL);
+insert into supplies values ( ‘D0002’, ‘Brake Fluid’, ’Nissan’,4);
+
+insert into supplies values ( ‘D0001’, ‘Brake Shoes’, ’Nissan’,NULL);
+insert into supplies values ( ‘D0002’, ‘Brake Shoes’, ’Nissan’,5);
+
+insert into supplies values ( ‘D0001’, ‘Camshaft’, ’Nissan’,4);
+insert into supplies values ( ‘D0002’, ‘Camshaft’, ’Nissan’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Catalytic converter’, ’Nissan’,NULL);
+insert into supplies values ( ‘D0002’, ‘Catalytic converter’, ’Nissan’,3);
+
+insert into supplies values ( ‘D0001’, ‘Coolant’, ’Nissan’,NULL);
+insert into supplies values ( ‘D0002’, ‘Coolant’, ’Nissan’,4);
+
+insert into supplies values ( ‘D0001’, ‘Drive belt’, ’Nissan’,NULL);
+insert into supplies values ( ‘D0002’, ‘Drive belt’, ’Nissan’,2);
+
+insert into supplies values ( ‘D0001’, ‘Engine oil’, ’Nissan’,2);
+insert into supplies values ( ‘D0002’, ‘Engine oil’, ’Nissan’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Gears’, ’Nissan’,5);
+insert into supplies values ( ‘D0002’, ‘Gears’, ’Nissan’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Light assembly’, ’Nissan’,3);
+insert into supplies values ( ‘D0002’, ‘Light assembly’, ’Nissan’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Oil Filter’, ’Nissan’,4);
+insert into supplies values ( ‘D0002’, ‘Oil Filter’, ’Nissan’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Piston’, ’Nissan’,2);
+insert into supplies values ( ‘D0002’, ‘Piston’, ’Nissan’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Power Steering Fluid’, ’Nissan’,5);
+insert into supplies values ( ‘D0002’, ‘Power Steering Fluid’, ’Nissan’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Spark plug’, ’Nissan’,NULL);
+insert into supplies values ( ‘D0002’, ‘Spark plug’, ’Nissan’,5);
+
+insert into supplies values ( ‘D0001’, ‘Suspension fluid’, ’Nissan’,NULL);
+insert into supplies values ( ‘D0002’, ‘Suspension fluid’, ’Nissan’,3);
+
+insert into supplies values ( ‘D0001’, ‘Valve’, ’Nissan’,3);
+insert into supplies values ( ‘D0002’, ‘Valve’, ’Nissan’,NULL);
+
+insert into supplies values ( ‘D0001’, ‘Wiper Fluid’, ’Nissan’,NULL);
+insert into supplies values ( ‘D0002’, ‘Wiper Fluid’, ’Nissan’,3);
+
+

@@ -120,15 +120,14 @@ CONSTRAINT supplies_pk PRIMARY KEY (distributor_id , part_name, vehicle_make),
 CONSTRAINT distributor_supplies_fk FOREIGN KEY (distributor_id ) REFERENCES distributor (distributor_id ) ON DELETE CASCADE);
 
 
-
-CREATE TABLE maintenance( 
-licence_plate_number VARCHAR(50) NOT NULL,
-service_name varchar2(50) NOT NULL,
-type varchar2(5) NOT NULL,
+#Please add foreign key constraints to maintenance table
+CREATE TABLE maintenance(
+service_name varchar (1000) NOT NULL,
+vehicle_make varchar (100) NOT NULL,
+vehicle_model varchar (100),
+service_type varchar2(5) NOT NULL,
 miles int NOT NULL,
-CONSTRAINT maintenance_pk PRIMARY KEY (licence_plate_number, service_name),
-CONSTRAINT maintenance_vehicle_fk FOREIGN KEY (licence_plate_number) REFERENCES vehicle(licence_plate_num),
-CONSTRAINT maintenance_basicservices_fk FOREIGN KEY (service_name) REFERENCES basic_services(service_name)
+CONSTRAINT maintenance_pk PRIMARY KEY (vehicle_make, vehicle_model, service_name)
 );
 
 CREATE TABLE repair_services( 
