@@ -131,11 +131,12 @@ CONSTRAINT maintenance_vehicle_fk FOREIGN KEY (licence_plate_number) REFERENCES 
 CONSTRAINT maintenance_basicservices_fk FOREIGN KEY (service_name) REFERENCES basic_services(service_name)
 );
 
-CREATE TABLE repair( 
-service_name varchar2(50) NOT NULL,
-problem varchar2(50) NOT NULL,
+CREATE TABLE repair_services( 
+service_name varchar(1000)  NOT NULL,
+problem varchar(100) NOT NULL,
 CONSTRAINT repair_pk PRIMARY KEY (service_name,problem),
-CONSTRAINT reapir_basicservices_fk FOREIGN KEY (service_name) REFERENCES basic_services(service_name)
+CONSTRAINT repairservices_basicservices_fk FOREIGN KEY (service_name) REFERENCES basic_services(service_name),
+CONSTRAINT repairservices_repairs_fk FOREIGN KEY (problem) REFERENCES repairs(problem)
 );
 
 CREATE TABLE owns( 
