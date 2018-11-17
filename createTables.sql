@@ -110,14 +110,15 @@ diagnostic_fee int,
 CONSTRAINT repairs_pk PRIMARY KEY (problem)
 );
 
-
+#Please add foreign key constraints to supplies table
 CREATE TABLE supplies(
 distributor_id VARCHAR(100) NOT NULL,
 part_name VARCHAR(100) NOT NULL,
 vehicle_make VARCHAR(100) NOT NULL,
 delivery_window INT, 
 CONSTRAINT supplies_pk PRIMARY KEY (distributor_id , part_name, vehicle_make),
-CONSTRAINT distributor_supplies_fk FOREIGN KEY (distributor_id ) REFERENCES distributor (distributor_id ) ON DELETE CASCADE);
+CONSTRAINT distributor_supplies_fk FOREIGN KEY (distributor_id ) REFERENCES distributor (distributor_id ) ON DELETE CASCADE
+);
 
 
 #Please add foreign key constraints to maintenance table
