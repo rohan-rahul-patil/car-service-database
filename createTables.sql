@@ -89,13 +89,18 @@ CONSTRAINT mechanic_pk PRIMARY KEY (employee_id)
 
 CREATE TABLE basic_services(
 service_name varchar (1000) NOT NULL,
-vehicle_make varchar (100) NOT NULL,
-vehicle_model varchar (100),
 part_name varchar(100),
-quantity int,
 charge_rate int,
 time float,
-CONSTRAINT basic_service_pk PRIMARY KEY(service_name, vehicle_make, vehicle_model)
+CONSTRAINT basic_service_pk PRIMARY KEY(service_name)
+);
+
+CREATE TABLE vehicle_services(
+service_name varchar (1000) NOT NULL,
+vehicle_make varchar (100) NOT NULL,
+vehicle_model varchar (100),
+quantity int,
+CONSTRAINT vehicle_service_pk PRIMARY KEY(service_name, vehicle_make, vehicle_model)
 );
 
 CREATE TABLE repairs(
