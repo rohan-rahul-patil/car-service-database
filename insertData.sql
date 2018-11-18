@@ -214,6 +214,18 @@ insert into basic_services values('Battery replacement','battery',50,0.25);
 insert into basic_services values('Brake check','brake fluid',50,0.25);
 insert into basic_services values('Brake repair','brake shoes',50,0.5);
 insert into basic_services values('Camshaft replacement','camshaft',65,1);
+
+INSERT INTO appointment(customer_id, license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'XYZ-5643', 'Maintenance Service C', '10-Sep-2018 10:00:00', '557279280', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, date, star_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'XYZ-5643', 'Maintenance Service B', '25-Feb-2018 9:00:00', '557279281', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'XYZ-5643', 'Maintenance Service A', '15-Oct-2017 8:00:00', '183683346', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'AHS-3132', 'Repair (Diagnostic: Battery Does not Hold Charge)', '6-Aug-2018 8:00:00', '557279282', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'AHS-3132', 'Maintenance Service B',  '15-May-2018 10:30:00',  '557279283', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'AHS-3132', 'Maintenance Service A', '28-Jan-2018 12.00:00', '557279283', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1002, 'IRM-1212', 'Maintenance Service A', '11-Feb-2018 8:30:00', '557279281', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1002, 'IRM-1212', 'Maintenance Service C', '10-Dec-2017 9:30:00', '557279281', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1002, 'IRM-1212', 'Maintenance Service B', '20-Jan-2017 10:00:00', '557279281', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1003, 'DEL-8888', 'Maintenance Service A', '11-Feb-2018 8:30:00', '187658163', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1003, 'DEL-8888', 'Repair (Diagnostic: Headlamps/Tail lamps not working)',  '5-Nov-2016 9:00:00', '401671897', 0);
 insert into basic_services values('Catalytic convertor replacement','catalytic convertor',65,1);
 insert into basic_services values('Coolant recycle','coolant',50,0.25);
 insert into basic_services values('Drive belt replacement','drive belt',65,1);
