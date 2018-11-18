@@ -585,20 +585,10 @@ INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_m
 INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_make, part_name, quantity, origin, destination, status) VALUES (9, '8-Nov-2018',  '14-Nov-2018',  NULL,  'Honda',  'Camshaft',  6,  'D0001',  'S0002',  'Pending');
 
 
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('lacohen', 'lacohen123', 'employee', 950932130); 	
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('wimartin', 'wimartin123', 'employee', 634622236);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('jagloss', 'jagloss123', 'employee', 557279280);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('anfreeman', 'anfreeman123', 'employee', 183683346);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('erfowler', 'erfowler123', 'employee', 557279281);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('rorichmond', 'rorichmond123', 'employee', 557279282);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('pefitzpatrick', 'pefitzpatrick123', 'employee', 557279283);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('rophillips', 'rophillips123', 'employee', 291056276);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('deholmes', 'deholmes123', 'employee', 911639633);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('duesparza', 'duesparza123', 'employee', 590424694);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('chpudilo', 'chpudilo123', 'employee', 401671897);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('jarivera', 'jarivera123', 'employee', 310773348);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('wimorton', 'wimorton123', 'employee', 983204784);
-INSERT INTO Login_Details(username, password, account_type, id) VALUES ('rihenderson', 'rihenderson123', 'employee', 187658163);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('lacohen', 'lacohen123', 'manager', 950932130); 	
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('wimartin', 'wimartin123', 'receptionist', 634622236);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('rophillips', 'rophillips123', 'manager', 291056276);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('deholmes', 'deholmes123', 'receptionist', 911639633);
 INSERT INTO Login_Details(username, password, account_type, id) VALUES ('ethanhunt', 'ethanhunt123', 'customer', 1001);
 INSERT INTO Login_Details(username, password, account_type, id) VALUES ('jarvis', 'jarvis123', 'customer', 1002);
 INSERT INTO Login_Details(username, password, account_type, id) VALUES ('lovestory', 'lovestory123', 'customer', 1003);
@@ -609,4 +599,17 @@ INSERT INTO Login_Details(username, password, account_type, id) VALUES ('venus',
 INSERT INTO notification(delivery_date, service_center_id, message) VALUES ('5-Nov-2018', 'S0001', '5 Camshaft from D0001 delayed by 2 business days');
 INSERT INTO notification(delivery_date, service_center_id, message) VALUES ('11-Aug-2017', 'S0002',  '4 Coolant from D0002 delayed by 1 business day');
 INSERT INTO notification(delivery_date, service_center_id, message) VALUES ('18-Jun-2014', 'S0001',  '5 Battery from D0001 delayed by 3 business days');
+
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'XYZ-5643', 'Maintenance Service C', '10-Sep-2018 10:00:00', '557279280', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'XYZ-5643', 'Maintenance Service B', '25-Feb-2018 9:00:00', '557279281', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'XYZ-5643', 'Maintenance Service A', '15-Oct-2017 8:00:00', '183683346', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'AHS-3132', 'Repair (Diagnostic: Battery Does not Hold Charge)', '6-Aug-2018 8:00:00', '557279282', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'AHS-3132', 'Maintenance Service B',  '15-May-2018 10:30:00',  '557279283', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1001, 'AHS-3132', 'Maintenance Service A', '28-Jan-2018 12.00:00', '557279283', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1002, 'IRM-1212', 'Maintenance Service A', '11-Feb-2018 8:30:00', '557279281', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1002, 'IRM-1212', 'Maintenance Service C', '10-Dec-2017 9:30:00', '557279281', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1002, 'IRM-1212', 'Maintenance Service B', '20-Jan-2017 10:00:00', '557279281', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1003, 'DEL-8888', 'Maintenance Service A', '11-Feb-2018 8:30:00', '187658163', 0);
+INSERT INTO appointment(customer_id,license_plate_num, service_type, appointment_date_time, preferred_mechanic_id, invoice_amount) VALUES (1003, 'DEL-8888', 'Repair (Diagnostic: Headlamps/Tail lamps not working)',  '5-Nov-2016 9:00:00', '401671897', 0);
+
 
