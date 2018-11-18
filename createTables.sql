@@ -124,36 +124,33 @@ vehicle_make VARCHAR(100) NOT NULL,
 delivery_window INT, 
 CONSTRAINT supplies_pk PRIMARY KEY (distributor_id , part_name, vehicle_make),
 CONSTRAINT distributor_supplies_fk FOREIGN KEY (distributor_id) REFERENCES distributor (distributor_id) ON DELETE CASCADE,
-CONSTRAINT part_supplies_fk FOREIGN KEY (part_name) REFERENCES parts (part_name) ON DELETE CASCADE,
-CONSTRAINT vehicle_supplies_fk FOREIGN KEY (vehicle_make) REFERENCES vehicles (vehicle_make) ON DELETE CASCADE
+CONSTRAINT part_supplies_fk FOREIGN KEY (part_name, vehicle_make) REFERENCES parts (part_name, vehicle_make) ON DELETE CASCADE
 );
 
 
-CREATE TABLE maintenance(
+CREATE TABLE maintainance(
 service_name varchar (1000) NOT NULL,
 vehicle_make varchar (100) NOT NULL,
 vehicle_model varchar (100) NOT NULL,
 service_type varchar2(5) NOT NULL,
 miles int NOT NULL,
-CONSTRAINT maintenance_pk PRIMARY KEY (vehicle_make, vehicle_model, service_name)
-CONSTRAINT service_maintainance_fk FOREIGN KEY(service_name) REFERENCES basic_services (service_name) ON DELETE CASCADE,
-CONSTRAINT make_maintainance_fk FOREIGN KEY(vehicle_make) REFERENCES vehicle_services(vehicle_make) ON DELETE CASCADE,
-CONSTRAINT model_maintainance_fk FOREIGN KEY(vehicle_model) REFERENCES vehicle_services(vehicle_model) ON DELETE CASCADE
+CONSTRAINT maintenance_pk PRIMARY KEY (vehicle_make, vehicle_model, service_name),
+CONSTRAINT service_maintainance_fk FOREIGN KEY(service_name, vehicle_make, vehicle_model) REFERENCES vehicle_services (service_name, vehicle_make, vehicle_model) ON DELETE CASCADE
 );
 
 CREATE TABLE repair_services( 
 service_name varchar(1000)  NOT NULL,
 problem varchar(100) NOT NULL,
 CONSTRAINT repair_pk PRIMARY KEY (service_name,problem),
-CONSTRAINT repairservices_basicservices_fk FOREIGN KEY (service_name) REFERENCES basic_services(service_name) ON DELETE CASCADE,
+CONSTRAINT rs_basicservices_fk FOREIGN KEY (service_name) REFERENCES basic_services(service_name) ON DELETE CASCADE,
 CONSTRAINT repairservices_repairs_fk FOREIGN KEY (problem) REFERENCES repairs(problem) ON DELETE CASCADE
 );
 
 CREATE TABLE owns( 
-licence_plate_number VARCHAR(50) NOT NULL,
+license_plate_num VARCHAR(50) NOT NULL,
 customer_id int NOT NULL,
-CONSTRAINT owns_pk PRIMARY KEY (licence_plate_number),
-CONSTRAINT owns_vehicle_fk FOREIGN KEY (licence_plate_number) REFERENCES vehicle (licence_plate_num) ON DELETE CASCADE,
+CONSTRAINT owns_pk PRIMARY KEY (license_plate_num),
+CONSTRAINT owns_vehicle_fk FOREIGN KEY (license_plate_num) REFERENCES vehicle (license_plate_num) ON DELETE CASCADE,
 CONSTRAINT owns_customer_fk FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE CASCADE
 );
 
