@@ -132,7 +132,7 @@ CONSTRAINT vehicle_supplies_fk FOREIGN KEY (vehicle_make) REFERENCES vehicles (v
 CREATE TABLE maintenance(
 service_name varchar (1000) NOT NULL,
 vehicle_make varchar (100) NOT NULL,
-vehicle_model varchar (100),
+vehicle_model varchar (100) NOT NULL,
 service_type varchar2(5) NOT NULL,
 miles int NOT NULL,
 CONSTRAINT maintenance_pk PRIMARY KEY (vehicle_make, vehicle_model, service_name)
@@ -155,4 +155,56 @@ customer_id int NOT NULL,
 CONSTRAINT owns_pk PRIMARY KEY (licence_plate_number),
 CONSTRAINT owns_vehicle_fk FOREIGN KEY (licence_plate_number) REFERENCES vehicle (licence_plate_num) ON DELETE CASCADE,
 CONSTRAINT owns_customer_fk FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE orders(
+order_id int NOT NULL,
+placed_date date NOT NULL,
+expected_date date NOT NULL,
+actual_date date,
+origin varchar(100) NOT NULL,
+destination varchar(100) NOT NULL,
+status varchar(100) NOT NULL,
+part_name varchar(100) NOT NULL,
+vehicle_make varchar(100) NOT NULL,
+quantity int NOT NULL,
+CONSTRAINT order_pk PRIMARY KEY(order_id),
+CONSTRAINT order_serv_cent_1 FOREIGN KEY(destination) REFERENCES
+service_center(service_center_id),
+CONSTRAINT order_part FOREIGN KEY(part_name, vehicle_make) REFERENCES 
+parts(part_name, vehicle_make)
+);
+
+
+CREATE TABLE login_details(
+username varchar(100) NOT NULL,
+password varchar(100) NOT NULL,
+account_type varchar(100) NOT NULL,
+id INT,
+CONSTRAINT login_pk PRIMARY KEY (username)
+);
+
+
+CREATE TABLE notification(
+delivery_date date NOT NULL,
+service_center_id varchar(100),
+message varchar(100),
+CONSTRAINT not_pk PRIMARY KEY(delivery_date, service_center_id, message),
+CONSTRAINT not_serv_fk FOREIGN KEY(service_center_id) REFERENCES
+service_center(service_center_id)
+);
+
+
+CREATE TABLE appointment(
+appointment_date_time timestamp NOT NULL,
+service_type varchar(100) NOT NULL,
+invoice_amount int NOT NULL,
+preferred_mechanic_id VARCHAR(100) NOT NULL,
+license_plate_num VARCHAR(100) NOT NULL,  
+customer_id int NOT NULL,
+CONSTRAINT appointment_pk PRIMARY KEY (license_plate_num, appointment_date_time),
+CONSTRAINT appointment_mechanic_fk FOREIGN KEY (preferred_mechanic_id) REFERENCES mechanic (employee_id),
+CONSTRAINT appointment_customer_fk FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+CONSTRAINT appointment_vehicle_fk FOREIGN KEY (license_plate_num) REFERENCES vehicle(license_plate_num)
 );

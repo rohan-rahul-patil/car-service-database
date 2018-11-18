@@ -574,3 +574,39 @@ insert into supplies values ( 'D0001', 'Wiper Fluid', 'Nissan',NULL);
 insert into supplies values ( 'D0002', 'Wiper Fluid', 'Nissan',3);
 
 
+INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_make, part_name, quantity, origin, destination, status) VALUES (1, '9-Jun-2014',  '13-Jun-2014',  '18-Jun-2014',  'Toyota',  'Battery',  5,  'D0001',  'S0001',  'Complete');
+INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_make, part_name, quantity, origin, destination, status) VALUES (2, '16-Sep-2015',  '21-Sep-2015',  '21-Sep-2015',  'Honda',  'Wiper Fluid',  5,  'D0002', 'S0001',  'Complete');
+INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_make, part_name, quantity, origin, destination, status) VALUES (3, '10-Feb-2016',  '11-Feb-2016',  '11-Feb-2016',  'Honda',  'Gears',  5,  'S0001',  'S0002',  'Complete');
+INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_make, part_name, quantity, origin, destination, status) VALUES (4, '9-Aug-2017',  '10-Aug-2017', '11-Aug-2017',  'Nissan',  'Coolant',  4,  'S0002',  'S0001',  'Complete');
+INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_make, part_name, quantity, origin, destination, status) VALUES (5, '4-Oct-2018',  '5-Oct-2018',  '5-Oct-2018',  'Toyota',  'Air Filter',  6,  'S0001',  'S0002', 'Complete');
+INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_make, part_name, quantity, origin, destination, status) VALUES (6, '26-Oct-2018', '1-Nov-2018', '5-Nov-2018', 'Nissan',  'Camshaft',  5,  'D0001',  'S0001',  'Complete'); 
+INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_make, part_name , quantity, origin, destination, status) VALUES (7, '9-Nov-2018',  '14-Nov-2018',  NULL,  'Honda',  'Wiper Fluid',  7,  'D0002',  'S0002',  'Pending');
+INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_make, part_name, quantity, origin, destination, status) VALUES (8, '7-Nov-2018',  '14-Nov-2018',  NULL,  'Honda',  'Axel Rod',  12,  'D0001',  'S0002',  'Pending');
+INSERT INTO orders(order_id, placed_date, expected_date,  actual_date, vehicle_make, part_name, quantity, origin, destination, status) VALUES (9, '8-Nov-2018',  '14-Nov-2018',  NULL,  'Honda',  'Camshaft',  6,  'D0001',  'S0002',  'Pending');
+
+
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('lacohen', 'lacohen123', 'employee', 950932130); 	
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('wimartin', 'wimartin123', 'employee', 634622236);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('jagloss', 'jagloss123', 'employee', 557279280);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('anfreeman', 'anfreeman123', 'employee', 183683346);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('erfowler', 'erfowler123', 'employee', 557279281);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('rorichmond', 'rorichmond123', 'employee', 557279282);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('pefitzpatrick', 'pefitzpatrick123', 'employee', 557279283);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('rophillips', 'rophillips123', 'employee', 291056276);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('deholmes', 'deholmes123', 'employee', 911639633);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('duesparza', 'duesparza123', 'employee', 590424694);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('chpudilo', 'chpudilo123', 'employee', 401671897);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('jarivera', 'jarivera123', 'employee', 310773348);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('wimorton', 'wimorton123', 'employee', 983204784);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('rihenderson', 'rihenderson123', 'employee', 187658163);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('ethanhunt', 'ethanhunt123', 'customer', 1001);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('jarvis', 'jarvis123', 'customer', 1002);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('lovestory', 'lovestory123', 'customer', 1003);
+INSERT INTO Login_Details(username, password, account_type, id) VALUES ('venus', 'venus123', 'customer', 1004);
+
+
+
+INSERT INTO notification(delivery_date, service_center_id, message) VALUES ('5-Nov-2018', 'S0001', '5 Camshaft from D0001 delayed by 2 business days');
+INSERT INTO notification(delivery_date, service_center_id, message) VALUES ('11-Aug-2017', 'S0002',  '4 Coolant from D0002 delayed by 1 business day');
+INSERT INTO notification(delivery_date, service_center_id, message) VALUES ('18-Jun-2014', 'S0001',  '5 Battery from D0001 delayed by 3 business days');
+
