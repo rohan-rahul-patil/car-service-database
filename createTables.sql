@@ -3,7 +3,7 @@ service_center_id VARCHAR(100),
 name VARCHAR(100) NOT NULL,
 address VARCHAR(100),
 phone_num VARCHAR(100),
-CONSTRAINT service_center_pk PRIMARY KEY(service_center_id)
+CONSTRAINT service_center_pk PRIMARY KEY (service_center_id)
 );
 
 CREATE TABLE distributor( 
@@ -20,7 +20,7 @@ phone_num VARCHAR(100),
 email VARCHAR(100),
 service_center_id VARCHAR(100),
 CONSTRAINT customer_pk PRIMARY KEY(customer_id),
-CONSTRAINT customer_servicecenter_fk FOREIGN KEY (service_center_id) REFERENCES service_center(service_center_id)
+CONSTRAINT customer_servicecenter_fk FOREIGN KEY (service_center_id) REFERENCES service_center(service_center_id) ON DELETE CASCADE
 );
 
 CREATE TABLE vehicle(
@@ -35,17 +35,24 @@ date_of_last_service DATE,
 CONSTRAINT vehicle_pk PRIMARY KEY(license_plate_num)
 );
 
-CREATE TABLE inventory(
+CREATE TABLE parts(
 part_name VARCHAR(100),
-vehicle_type VARCHAR(100),
-service_center_id VARCHAR(100),
+vehicle_make VARCHAR(100),
 price int NOT NULL,
 warranty int,
-current_qty int NOT NULL,
-min_inventory_threshold int NOT NULL,
-min_order_threshold int NOT NULL,
-CONSTRAINT inventory_pk PRIMARY KEY (part_name, vehicle_type, service_center_id),
-CONSTRAINT inventory_servicecenter_fk FOREIGN KEY (service_center_id) REFERENCES service_center(service_center_id)
+CONSTRAINT parts_pk PRIMARY KEY (part_name, vehicle_make)
+);
+
+CREATE TABLE inventory(
+part_name VARCHAR(100), 
+vehicle_make VARCHAR(100), 
+service_center_id VARCHAR(100), 
+current_qty int NOT NULL, 
+min_inventory_threshold int NOT NULL, 
+min_order_threshold int NOT NULL, 
+CONSTRAINT inventory_pk PRIMARY KEY (part_name, vehicle_make, service_center_id), 
+CONSTRAINT inventory_parts_fk FOREIGN KEY (part_name, vehicle_make) REFERENCES parts(part_name, vehicle_make) ON DELETE CASCADE,
+CONSTRAINT inventory_servicecenter_fk FOREIGN KEY (service_center_id) REFERENCES service_center(service_center_id) ON DELETE CASCADE
 );
 
 CREATE TABLE manager ( 
@@ -57,7 +64,7 @@ phone_num varchar(100),
 start_date date,
 monthly_salary int,
 center_id varchar(100) NOT NULL,
-CONSTRAINT manager_works_at FOREIGN KEY (center_id) REFERENCES service_center (service_center_id),
+CONSTRAINT manager_works_at FOREIGN KEY (center_id) REFERENCES service_center (service_center_id) ON DELETE CASCADE,
 CONSTRAINT manager_pk PRIMARY KEY (employee_id)
 );
 
@@ -70,7 +77,7 @@ phone_num varchar(100),
 start_date date,
 monthly_salary int,
 center_id varchar(100) NOT NULL,
-CONSTRAINT receptionist_works_at FOREIGN KEY (center_id) REFERENCES service_center (service_center_id),
+CONSTRAINT receptionist_works_at FOREIGN KEY (center_id) REFERENCES service_center (service_center_id) ON DELETE CASCADE,
 CONSTRAINT receptionist_pk PRIMARY KEY (employee_id)
 );
 
@@ -83,7 +90,7 @@ phone_num varchar(100),
 start_date date,
 hourly_salary int,
 center_id varchar(100) NOT NULL,
-CONSTRAINT mechanic_works_at FOREIGN KEY (center_id) REFERENCES service_center (service_center_id),
+CONSTRAINT mechanic_works_at FOREIGN KEY (center_id) REFERENCES service_center (service_center_id) ON DELETE CASCADE,
 CONSTRAINT mechanic_pk PRIMARY KEY (employee_id)
 );
 
@@ -110,18 +117,18 @@ diagnostic_fee int,
 CONSTRAINT repairs_pk PRIMARY KEY (problem)
 );
 
-#Please add foreign key constraints to supplies table
 CREATE TABLE supplies(
 distributor_id VARCHAR(100) NOT NULL,
 part_name VARCHAR(100) NOT NULL,
 vehicle_make VARCHAR(100) NOT NULL,
 delivery_window INT, 
 CONSTRAINT supplies_pk PRIMARY KEY (distributor_id , part_name, vehicle_make),
-CONSTRAINT distributor_supplies_fk FOREIGN KEY (distributor_id ) REFERENCES distributor (distributor_id ) ON DELETE CASCADE
+CONSTRAINT distributor_supplies_fk FOREIGN KEY (distributor_id) REFERENCES distributor (distributor_id) ON DELETE CASCADE,
+CONSTRAINT part_supplies_fk FOREIGN KEY (part_name) REFERENCES parts (part_name) ON DELETE CASCADE,
+CONSTRAINT vehicle_supplies_fk FOREIGN KEY (vehicle_make) REFERENCES vehicles (vehicle_make) ON DELETE CASCADE
 );
 
 
-#Please add foreign key constraints to maintenance table
 CREATE TABLE maintenance(
 service_name varchar (1000) NOT NULL,
 vehicle_make varchar (100) NOT NULL,
@@ -129,22 +136,23 @@ vehicle_model varchar (100),
 service_type varchar2(5) NOT NULL,
 miles int NOT NULL,
 CONSTRAINT maintenance_pk PRIMARY KEY (vehicle_make, vehicle_model, service_name)
+CONSTRAINT service_maintainance_fk FOREIGN KEY(service_name) REFERENCES basic_services (service_name) ON DELETE CASCADE,
+CONSTRAINT make_maintainance_fk FOREIGN KEY(vehicle_make) REFERENCES vehicle_services(vehicle_make) ON DELETE CASCADE,
+CONSTRAINT model_maintainance_fk FOREIGN KEY(vehicle_model) REFERENCES vehicle_services(vehicle_model) ON DELETE CASCADE
 );
 
 CREATE TABLE repair_services( 
 service_name varchar(1000)  NOT NULL,
 problem varchar(100) NOT NULL,
 CONSTRAINT repair_pk PRIMARY KEY (service_name,problem),
-CONSTRAINT repairservices_basicservices_fk FOREIGN KEY (service_name) REFERENCES basic_services(service_name),
-CONSTRAINT repairservices_repairs_fk FOREIGN KEY (problem) REFERENCES repairs(problem)
+CONSTRAINT repairservices_basicservices_fk FOREIGN KEY (service_name) REFERENCES basic_services(service_name) ON DELETE CASCADE,
+CONSTRAINT repairservices_repairs_fk FOREIGN KEY (problem) REFERENCES repairs(problem) ON DELETE CASCADE
 );
 
 CREATE TABLE owns( 
 licence_plate_number VARCHAR(50) NOT NULL,
 customer_id int NOT NULL,
 CONSTRAINT owns_pk PRIMARY KEY (licence_plate_number),
-CONSTRAINT owns_vehicle_fk FOREIGN KEY (licence_plate_number)
-REFERENCES vehicle (licence_plate_num),
-CONSTRAINT owns_customer_fk FOREIGN KEY (customer_id)
-REFERENCES customer (customer_id)
+CONSTRAINT owns_vehicle_fk FOREIGN KEY (licence_plate_number) REFERENCES vehicle (licence_plate_num) ON DELETE CASCADE,
+CONSTRAINT owns_customer_fk FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE CASCADE
 );
