@@ -56,7 +56,7 @@ CONSTRAINT inventory_servicecenter_fk FOREIGN KEY (service_center_id) REFERENCES
 );
 
 CREATE TABLE manager ( 
-employee_id varchar (100) NOT NULL,
+employee_id int NOT NULL,
 name varchar(100),
 address varchar(100),
 email varchar(100),
@@ -69,7 +69,7 @@ CONSTRAINT manager_pk PRIMARY KEY (employee_id)
 );
 
 CREATE TABLE receptionist ( 
-employee_id varchar (100) NOT NULL,
+employee_id int NOT NULL,
 name varchar(100),
 address varchar(100),
 email varchar(100),
@@ -82,7 +82,7 @@ CONSTRAINT receptionist_pk PRIMARY KEY (employee_id)
 );
 
 CREATE TABLE mechanic( 
-employee_id varchar (100) NOT NULL,
+employee_id int NOT NULL,
 name varchar(100),
 address varchar(100),
 email varchar(100),
@@ -197,7 +197,7 @@ CREATE TABLE appointment(
 appointment_date_time timestamp NOT NULL,
 service_type varchar(100) NOT NULL,
 invoice_amount int NOT NULL,
-preferred_mechanic_id VARCHAR(100) NOT NULL,
+preferred_mechanic_id int NOT NULL,
 license_plate_num VARCHAR(100) NOT NULL,  
 customer_id int NOT NULL,
 CONSTRAINT appointment_pk PRIMARY KEY (license_plate_num, appointment_date_time),

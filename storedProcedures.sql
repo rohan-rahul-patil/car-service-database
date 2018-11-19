@@ -62,7 +62,7 @@ end;
 
 
 CREATE OR REPLACE FUNCTION
-get_user_details( un in varchar2, nm OUT varchar, ph OUT varchar, em OUT varchar)
+get_user_details( un in varchar2, nm OUT varchar, ph OUT varchar, em OUT varchar, id OUT int, ad OUT varchar)
 RETURN varchar2
 AS
 atype varchar2(50);
@@ -70,12 +70,13 @@ userid int :=0;
 begin
 	select account_type into atype from login_details where username =  un;
 	select id into userid from login_details where username =  un;
+	id := userid;
 	if atype = 'manager' then
-		select name, phone_num, email into nm, ph, em from manager where employee_id = userid;
+		select name, address, phone_num, email into nm, ad, ph, em from manager where employee_id = userid;
 	elsif atype = 'receptionist' then
-		select name, phone_num, email into nm, ph, em from receptionist where employee_id = userid;
+		select name, address, phone_num, email into nm, ad, ph, em from manager where employee_id = userid;
 	elsif atype = 'customer' then 
-		select name, phone_num, email into nm, ph, em from customer where customer_id = userid;
+		select name, address, phone_num, email into nm, ad, ph, em from manager where employee_id = userid;
 	end if;
 	return(atype);
 END get_user_details;
@@ -167,15 +168,16 @@ begin
 	end if;
 END registerCar;
 
-create or replace type appointment_record as object(
+/*6*/
+CREATE OR REPLACE type appointment_record as object(
 	appointment_date_time timestamp,
 	service_type varchar2(100),
 	preferred_mechanic_id int,
 	license_plate_num varchar2(100)
 );
 
-create or replace type appointment_table as table of appointment_record;
-/*6*/
+CREATE OR REPLACE type appointment_table as table of appointment_record;
+
 CREATE OR REPLACE FUNCTION
 view_service_history(cid in int)
 RETURN appointment_table 
@@ -186,6 +188,7 @@ begin
 	return(v_ret);
 end view_service_history;
 
+/*7*/
 CREATE OR REPLACE FUNCTION
 schedule_maintainance_service(cid in int, lic in varchar, m in int, mech in varchar, d in timestamp)
 RETURN int
@@ -202,7 +205,33 @@ begin
 	return(1);
 END schedule_maintainance_service;
 	
+/*8*/
+CREATE OR REPLACE FUNCTION
+schedule_repair_service(cid in int, lic in varchar, prob in varchar, m in int, mech in varchar, d in timestamp)
+RETURN int
+AS
+mech_id int;
+begin
+	select employee_id  into mech_id from mechanic where name = mech;
+	insert into appointment values(d, prob, null,  mech_id, lic, cid);
+	return(1);
+END schedule_repair_service;
 
+/*9*/
+CREATE OR REPLACE type part_record as object(
+	part_name varchar(100);
+);
+
+CREATE OR REPLACE type part_table as table of part_record;
+
+CREATE OR REPLACE FUNCTION
+diagnostic_report(prob in varchar)
+RETURN part_table
+AS
+v_ret part_table;
+begin
+	
+end diagnostic_report;
 
 /*________________________________________________sayali____________________________________________________*/
 
