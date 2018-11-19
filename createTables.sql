@@ -29,8 +29,8 @@ make VARCHAR(100),
 model VARCHAR(100),
 year INT,
 purchase_date DATE,
-last_mileage INT NOT NULL,
-type_of_last_service VARCHAR(100) NOT NULL,
+last_mileage INT,
+type_of_last_service VARCHAR(100),
 date_of_last_service DATE,
 CONSTRAINT vehicle_pk PRIMARY KEY(license_plate_num)
 );
@@ -133,7 +133,7 @@ service_name varchar (1000) NOT NULL,
 vehicle_make varchar (100) NOT NULL,
 vehicle_model varchar (100) NOT NULL,
 service_type varchar2(5) NOT NULL,
-miles int NOT NULL,
+miles int,
 CONSTRAINT maintenance_pk PRIMARY KEY (vehicle_make, vehicle_model, service_name),
 CONSTRAINT service_maintainance_fk FOREIGN KEY(service_name, vehicle_make, vehicle_model) REFERENCES vehicle_services (service_name, vehicle_make, vehicle_model) ON DELETE CASCADE
 );
