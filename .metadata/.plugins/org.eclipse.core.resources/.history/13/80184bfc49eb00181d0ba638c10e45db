@@ -1,0 +1,10 @@
+
+public class Employee {
+	String employeeType;
+	
+	public void displayProfile()
+	{
+	System.out.println("1.View Profile \n2.Update Profile \n3.Go back");
+	
+	}
+}

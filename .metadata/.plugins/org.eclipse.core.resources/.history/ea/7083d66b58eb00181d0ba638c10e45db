@@ -1,0 +1,8 @@
+
+public class Receptionist extends Employee{
+	public void test()
+	{
+		String e=getEmail();
+		
+	}
+}

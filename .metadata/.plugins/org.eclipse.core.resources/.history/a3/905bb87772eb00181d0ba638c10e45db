@@ -1,0 +1,66 @@
+
+public class Manager extends Employee{
+	public int displayLandingPage()
+	{
+		System.out.println("Please enter one of the choices below:");
+		System.out.println("1.Profile \n2.View Customer Profile \n3.Add new employees\n4.Payroll\n5.Inventory\n6.Orders\n7.Notifications\n8.New car model\n9.Car Service Details\n10.Service History\n11.Invoices\n12.Logout ");
+		int optionSelected =in.nextInt(); 
+		return optionSelected;
+	}
+	public void addEmployee()
+	{
+		System.out.println("Please enter Employee name");
+		String name=in.next();
+		System.out.println("Please enter address");
+		String address=in.next();
+		System.out.println("Please enter email address");
+		String emailAddress=in.next();
+		System.out.println("Please enter phone number");
+		String phoneNumber=in.next();
+		System.out.println("Please enter role");
+		String role=in.next();
+		System.out.println("Please enter start date");
+		String startDate=in.next();
+		System.out.println("Please enter compensation");
+		int compensation=in.nextInt();
+		
+		
+		System.out.println("Please enter one of the choices below:");
+		System.out.println("1.Add \n2.Go Back");
+		int optionSelected =in.nextInt(); 
+		if(optionSelected==1)
+		{
+			//TODO: call a stored procedure addEmployee with the above details. Show confirmation message on the screen.
+		}
+		displayLandingPage();
+	}
+	public void payroll()
+	{
+		System.out.println("Please enter employee id");
+		String employeeId=in.next();
+		//TODO: write remaining portion
+	}
+	public void inventory()
+	{
+		//TODO: Call a stored procedure to get details of all parts in the inventory and display all the details
+		int optionSelected=-1;
+		while(optionSelected!=1)
+		{
+		System.out.println("Please enter one of the choices below:");
+		System.out.println("1.Go Back");
+		optionSelected =in.nextInt(); 
+		if(optionSelected==1)
+			displayLandingPage();
+		else
+			System.out.println("Please enter valid choice.");
+		}
+	}
+	public int orders()
+	{
+		System.out.println("Please enter one of the choices below:");
+		System.out.println("1.Order History \n2.New Order \n3.Go back ");
+		int optionSelected =in.nextInt(); 
+		return optionSelected;
+	}
+	
+}

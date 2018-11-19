@@ -1,0 +1,100 @@
+import java.sql.Date;
+import java.util.Scanner;
+
+public class Employee {
+	private String employeeId;
+	private String name;
+	private String address;
+	private String email;
+	private String phoneNumber;
+	private Date startDate;
+	private int monthlySalary;
+	private String centerId;
+	Scanner in =new Scanner(System.in);
+	
+	public int displayProfile()
+	{
+	System.out.println("Please enter one of the choices below:");
+	System.out.println("1.View Profile \n2.Update Profile \n3.Go back");
+	int optionSelected =in.nextInt(); 
+	return optionSelected;
+	}
+	
+	public int viewProfile()
+	{
+		//TODO: call a stored procedure to get the profile of the employee and display the employee details
+		System.out.println("Please enter one of the choices below:");
+		System.out.println("1.Go Back");
+		int optionSelected =in.nextInt(); 
+		return optionSelected;
+	}
+	
+	public int updateProfile()
+	{
+		
+	}
+
+	public String getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public int getMonthlySalary() {
+		return monthlySalary;
+	}
+
+	public void setMonthlySalary(int monthlySalary) {
+		this.monthlySalary = monthlySalary;
+	}
+
+	public String getCenterId() {
+		return centerId;
+	}
+
+	public void setCenterId(String centerId) {
+		this.centerId = centerId;
+	}
+}
