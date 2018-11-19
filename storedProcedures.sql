@@ -127,4 +127,141 @@ begin
 	return(1);
 END schedule_maintainance_service;
 	
+<<<<<<< HEAD
 	
+=======
+
+/*____________________________________________________________________________________________________*/
+
+create or replace type login_record as object (
+  username varchar2(50),
+  password varchar2(50),
+  account_type varchar2(50),
+  id number(38)  
+);
+/
+
+create or replace type login_table as table of login_record;
+/
+
+create or replace function get_login_details(p_user_id varchar2, p_password varchar2)
+return login_table as
+    v_ret   login_table;
+begin
+
+    select login_record(username, password, account_type, id)
+    bulk collect into
+      v_ret
+    from 
+      login_details
+    where
+      username = p_user_id and password = p_password;
+  
+    return v_ret;
+  
+end get_login_details;
+/
+
+
+
+/*select *from table(get_login_details('lovestory', 'lovestory123'));*/
+
+
+/*____________________________________________________________________________________________*/
+
+
+create or replace type vehicle_record as object (
+	license_plate_num VARCHAR(100),
+	make VARCHAR(100),
+	model VARCHAR(100),
+	year INT,
+	purchase_date DATE,
+	last_mileage INT,
+	type_of_last_service VARCHAR(100),
+	date_of_last_service DATE
+);
+/
+
+create or replace type vehicle_table as table of vehicle_record;
+/
+
+
+create or replace function get_vehicles(p_customer_id varchar)
+return vehicle_table as
+    v_ret   vehicle_table;
+begin
+
+    select vehicle_record(vehicle.license_plate_num, vehicle.make, vehicle.model, vehicle.year, vehicle.purchase_date, vehicle.last_mileage, vehicle.type_of_last_service, vehicle.date_of_last_service)
+    bulk collect into
+      v_ret
+    from 
+      owns, vehicle
+    where
+      p_customer_id = owns.customer_id and owns.license_plate_num = vehicle.license_plate_num;
+  
+    return v_ret; 
+  
+end get_vehicles;
+/
+
+
+/*select *from table(get_vehicles('1001'));*/
+
+
+/*___________________________________________________________________________________________________*/
+
+
+
+
+create or replace type profile_record as object (
+	name varchar(100),
+	address varchar(100),
+	email varchar(100),
+	phone_num varchar(100),
+	start_date date,
+	salary int,
+	center_id varchar(100)
+);
+/
+
+create or replace type profile_table as table of profile_record;
+/
+
+
+create or replace function get_employee_profile(p_employee_id varchar)
+return profile_table as
+    v_ret   profile_table;
+    employee_type varchar2(50);
+begin
+
+    select account_type into employee_type
+    from login_details
+    where id = p_employee_id;
+
+    if employee_type = 'manager' then 
+    	select profile_record(name, address, email, phone_num, start_date, monthly_salary, center_id)
+    	bulk collect into
+      	v_ret
+    	from 
+      	manager
+    	where
+     	p_employee_id = employee_id;
+  
+ 
+    elsif employee_type = 'receptionist' then
+	select profile_record(name, address, email, phone_num, start_date, monthly_salary, center_id)
+    	bulk collect into
+      	v_ret
+    	from 
+      	receptionist
+    	where
+     	p_employee_id = employee_id;
+    end if;
+return v_ret;
+end get_employee_profile;
+/
+
+
+/*select *from table(get_employee_profile('634622236'));*/
+
+>>>>>>> c4b4241d845c160b4a44a177f94289ca34d5b54c
