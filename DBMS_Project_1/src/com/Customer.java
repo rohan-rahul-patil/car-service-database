@@ -12,9 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import oracle.jdbc.driver.OracleTypes;
+//import oracle.jdbc.driver.OracleTypes;
 import oracle.jdbc.oracore.OracleType;
-
+import oracle.jdbc.OracleTypes;
 public class Customer {
 	
 	int customer_id;
@@ -51,6 +51,10 @@ public class Customer {
 		this.email = email;
 		this.phone_number = phone_number;
 		this.password = password;
+	}
+	public Customer(int customer_id)
+	{
+		this.customer_id=customer_id;
 	}
 	
 	public void customerLandingPage()

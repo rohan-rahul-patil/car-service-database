@@ -16,7 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import oracle.jdbc.driver.OracleTypes;
+import oracle.jdbc.OracleTypes;
+//import oracle.jdbc.driver.OracleTypes;
 import oracle.jdbc.oracore.OracleType;
 
 public class Login_Menu {
@@ -41,6 +42,12 @@ public class Login_Menu {
 	public static PreparedStatement pstmt;
 	public static ResultSet rs;
 	
+	public static void main(String[] args)
+	{
+		Employee e=new Employee(950932130);
+		e.viewProfile();
+	}
+	/*
 	public static void main(String[] args) throws SQLException {
 		
 		try
@@ -63,7 +70,7 @@ public class Login_Menu {
 			e.printStackTrace();
 		}
 	}
-	
+	*/
 	public static void homePage() throws SQLException, IOException
 	{
 		System.out.println("Home Page");

@@ -1,12 +1,32 @@
 package com;
 
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+
+import oracle.jdbc.OracleTypes;
+
 public class Manager extends Employee{
-	public int displayLandingPage()
+	public void displayLandingPage()
 	{
 		System.out.println("Please enter one of the choices below:");
 		System.out.println("1.Profile \n2.View Customer Profile \n3.Add new employees\n4.Payroll\n5.Inventory\n6.Orders\n7.Notifications\n8.New car model\n9.Car Service Details\n10.Service History\n11.Invoices\n12.Logout ");
 		int optionSelected =in.nextInt(); 
-		return optionSelected;
+		switch(optionSelected)
+		{
+		case 1: viewProfile(); break;
+		case 2: viewCustomerProfile(); break;
+		case 3: addEmployee();break;
+		case 4: payroll();break;
+		case 5: inventory();break;
+		case 6: orders();break;
+		case 7: notifications();break;
+		case 8: newCarModel();break;
+		case 9: carServiceDetails();break;
+		case 10:serviceHistory();break;
+		case 11: invoices();break;
+		default: displayLandingPage();break;
+		}
 	}
 	public void addEmployee()
 	{
@@ -20,19 +40,53 @@ public class Manager extends Employee{
 		String phoneNumber=in.next();
 		System.out.println("Please enter role");
 		String role=in.next();
-		System.out.println("Please enter start date");
+		System.out.println("Please enter start date in MM-DD-YYYY");
 		String startDate=in.next();
+		try {
+		java.util.Date dp=new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+		Date dateStart=new java.sql.Date(dp.getTime());
+		
 		System.out.println("Please enter compensation");
 		int compensation=in.nextInt();
-		
 		
 		System.out.println("Please enter one of the choices below:");
 		System.out.println("1.Add \n2.Go Back");
 		int optionSelected =in.nextInt(); 
 		if(optionSelected==1)
 		{
-			//TODO: call a stored procedure addEmployee with the above details. Show confirmation message on the screen.
+			try
+			{
+			sqlQuery = "{? = call add_employee (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+			cstmt = conn.prepareCall(sqlQuery);
+			
+			cstmt.registerOutParameter(1, OracleTypes.INTEGER);
+			current_employee_id=current_employee_id+1;
+			cstmt.setInt(2, current_employee_id);
+			cstmt.setString(3, name);
+			cstmt.setString(4, address);
+			cstmt.setString(5, emailAddress);
+			cstmt.setString(6, phoneNumber);
+			cstmt.setString(7, "12345678");
+			cstmt.setString(8, role);
+			cstmt.setDate(9, dateStart);
+			cstmt.setInt(10, compensation);
+			cstmt.setString(11, this.getCenterId());
+			
+			cstmt.executeUpdate();
+								
+			int success = cstmt.getInt(1);
+			if(success==1)
+				System.out.println("Employee profile is successfully updated.");
+			}catch(SQLException ex)
+			{
+				ex.printStackTrace();
+			}
 		}
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		
 		displayLandingPage();
 	}
 	public void payroll()

@@ -8,8 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import oracle.jdbc.OracleTypes;
+
 public class Employee {
-	private String employeeId;
+	private int employeeId;
 	private String name;
 	private String address;
 	private String email;
@@ -23,8 +25,9 @@ public class Employee {
 	public static CallableStatement cstmt;
 	public static String sqlQuery;  
 	Scanner in =new Scanner(System.in);
-	private MyConnection mc = new MyConnection();
+	MyConnection mc = new MyConnection();
 	Connection conn=mc.getConnection();  
+	public static int current_employee_id;
 	public void profile()
 	{
 	while(true)
@@ -54,7 +57,7 @@ public class Employee {
 	{
 		
 	}
-	public Employee(String id)
+	public Employee(int id)
 	{
 		employeeId=id;
 	}
@@ -69,7 +72,7 @@ public class Employee {
 		ResultSet rs = ps.executeQuery(s);
 		while(rs.next())
 		{
-			System.out.println("\n"+rs.getString(1)+"\t"+rs.getString(2)+"\t"+rs.getString(3)+"\t"+rs.getString(4)+"\t"+rs.getString(5)+"\t"+rs.getInt(6)+"\t"+rs.getString(7)+"\t");
+			System.out.println("\nName:"+rs.getString(1)+"\tAddress: "+rs.getString(2)+"\tEmail: "+rs.getString(3)+"\tPhone number: "+rs.getString(4)+"\tStart Date: "+rs.getString(5)+"\tSalary: "+rs.getInt(6)+"\tService center Id: "+rs.getString(7)+"\t");
 		}
 		   System.out.println(" ResultSet : "+rs);
 		} catch (SQLException e) {
@@ -114,7 +117,29 @@ public class Employee {
 		optionSelected =in.nextInt();
 	}
 	//TODO: Call a stored procedure to save employee profile
+	try
+	{
+	sqlQuery = "{? = call update_employee_profile (?, ?, ?, ?, ?, ?)}";
+	cstmt = conn.prepareCall(sqlQuery);
 	
+	cstmt.registerOutParameter(1, OracleTypes.INTEGER);
+	
+	cstmt.setInt(2, employeeId);
+	cstmt.setString(3, name);
+	cstmt.setString(4, address);
+	cstmt.setString(5, email);
+	cstmt.setString(6, phoneNumber);
+	cstmt.setString(7, password);
+	
+	cstmt.executeUpdate();
+						
+	int success = cstmt.getInt(1);
+	if(success==1)
+		System.out.println("Employee profile is successfully updated.");
+	}catch(SQLException ex)
+	{
+		ex.printStackTrace();
+	}
 	}
 	
 	public void viewCustomerProfile()
@@ -135,11 +160,11 @@ public class Employee {
 		}
 	}
 
-	public String getEmployeeId() {
+	public int getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(String employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 
