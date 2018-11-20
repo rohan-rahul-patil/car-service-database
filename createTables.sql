@@ -134,7 +134,7 @@ vehicle_make varchar (100) NOT NULL,
 vehicle_model varchar (100) NOT NULL,
 service_type varchar2(5) NOT NULL,
 miles int,
-CONSTRAINT maintenance_pk PRIMARY KEY (vehicle_make, vehicle_model, service_name),
+CONSTRAINT maintenance_pk PRIMARY KEY (service_name, vehicle_make, vehicle_model, service_type, miles),
 CONSTRAINT service_maintainance_fk FOREIGN KEY(service_name, vehicle_make, vehicle_model) REFERENCES vehicle_services (service_name, vehicle_make, vehicle_model) ON DELETE CASCADE
 );
 
