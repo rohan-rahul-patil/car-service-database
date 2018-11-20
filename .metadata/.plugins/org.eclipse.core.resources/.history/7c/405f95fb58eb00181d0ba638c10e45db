@@ -1,0 +1,9 @@
+
+public class Receptionist extends Employee{
+	public void registerCar()
+	{
+		
+		System.out.println("Please enter new value:");
+		String newValue=in.next();
+	}
+}

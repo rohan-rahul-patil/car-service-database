@@ -1,0 +1,23 @@
+import java.sql.Date;
+
+public class Receptionist extends Employee{
+	public void registerCar()
+	{
+		System.out.println("Please enter Customer email address");
+		String customerEmail=in.next();
+		System.out.println("Please enter licence plate number");
+		String licencePlate=in.next();
+		System.out.println("Please enter purchase date");
+		String purchaseDate=in.next();
+		System.out.println("Please enter make");
+		String make=in.next();
+		
+		System.out.println("Please enter one of the choices below:");
+		System.out.println("1.Register \n2.Cancel");
+		int optionSelected =in.nextInt(); 
+		if(optionSelected==1)
+		{
+			//TODO: call a stored procedure registerCar with the above details
+		}
+	}
+}

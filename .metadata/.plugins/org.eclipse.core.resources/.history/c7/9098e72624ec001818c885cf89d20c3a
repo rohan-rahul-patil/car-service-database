@@ -1,0 +1,10 @@
+import java.sql.Connection;
+
+public class Home {
+public static void main(String[] args)
+{
+	MyConnection mc = new MyConnection();
+	Connection conn;
+	conn = mc.getConnection();
+}
+}
