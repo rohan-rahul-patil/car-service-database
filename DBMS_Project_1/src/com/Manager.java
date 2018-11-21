@@ -1,8 +1,12 @@
 package com;
 
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import oracle.jdbc.OracleTypes;
 
@@ -98,6 +102,23 @@ public class Manager extends Employee{
 	public void inventory()
 	{
 		//TODO: Call a stored procedure to get details of all parts in the inventory and display all the details
+		String s = "select * from table(get_inventory_details)";
+		
+				PreparedStatement ps;
+				try {
+					ps = conn.prepareStatement(s);
+				
+				ResultSet rs = ps.executeQuery(s);
+				while(rs.next())
+				{
+					System.out.println("Part Name: "+rs.getString(1)+"\tQuantity:"+rs.getInt(2)+"\tUnit Price: "+rs.getInt(3)+"\tMinimum Quantity Threshold: "+rs.getInt(4)+"\tMinimum order threshold: "+rs.getInt(5));					
+				}
+		
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 		int optionSelected=-1;
 		while(optionSelected!=1)
 		{
@@ -119,7 +140,22 @@ public class Manager extends Employee{
 	}
 	public void orderHistory()
 	{
-		//TODO: Call a stored procedure to get details of all orders and display all the details
+		String s = "select * from table(get_order_details)";
+		
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(s);
+		
+		ResultSet rs = ps.executeQuery(s);
+		while(rs.next())
+		{
+			System.out.println("Order Id: "+rs.getInt(1)+"\tPlaced Date:"+rs.getString(2)+"\tPart Name: "+rs.getString(3)+"\tSupplier Id: "+rs.getString(4)+"\tPurchaser Id: "+rs.getString(5)+"\tQuantity: "+rs.getInt(6)+"\tUnit Price: "+rs.getInt(7)+"\tTotal Cost: "+rs.getInt(8)+"\tStatus: "+rs.getString(9));					
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		int optionSelected=-1;
 		while(optionSelected!=1)
 		{
@@ -154,7 +190,22 @@ public class Manager extends Employee{
 	}
 	public void notifications()
 	{
-		//TODO: Call a stored procedure to get notifications and display
+		String s = "select * from table(get_notification)";
+		
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(s);
+		
+		ResultSet rs = ps.executeQuery(s);
+		while(rs.next())
+		{
+			System.out.println("Delivery Date: "+rs.getString(1)+"\tOrder Id:"+rs.getInt(2)+"\tDelay: "+rs.getString(3)+"\tSupplier Id: "+rs.getString(4)+"\tExpected Date: "+rs.getString(5));					
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		
 		System.out.println("Please enter one of the choices below:");
 		System.out.println("1.Order ID \n2.Go back");
 		int optionSelected =in.nextInt();
@@ -171,6 +222,23 @@ public class Manager extends Employee{
 	{
 		System.out.println("Please enter order id");
 		int orderId=in.nextInt();
+		
+		String s = "select * from table(get_notification_details('"+orderId+"'))";
+		//950932130
+				PreparedStatement ps;
+				try {
+					ps = conn.prepareStatement(s);
+				
+				ResultSet rs = ps.executeQuery(s);
+				while(rs.next())
+				{
+					System.out.println("\nDelivery Date:"+rs.getString(1)+"\tOrder Id: "+rs.getString(2)+"\tPart Name: "+rs.getString(3)+"\tPurchaser Id: "+rs.getString(4)+"\tSupplier Id: "+rs.getString(5)+"\tQuantity: "+rs.getInt(6)+"\tUnit Price: "+rs.getInt(7)+"\tTotal cost: "+rs.getInt(8)+"\tStatus: "+rs.getString(9));
+				}
+				   
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		//TODO: Call a stored procedure to get details of the selected order and display
 		int optionSelected=-1;
 		while(optionSelected!=1)
@@ -221,7 +289,22 @@ public class Manager extends Employee{
 	}
 	public void carServiceDetails()
 	{
-		//TODO: Call a stored procedure to get details of all car models
+		String s = "select * from table(get_car_service_details)";
+		
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(s);
+		
+		ResultSet rs = ps.executeQuery(s);
+		while(rs.next())
+		{
+			System.out.println("Make: "+rs.getString(1)+"\tModel:"+rs.getString(2)+"\tYear: "+rs.getString(3)+"\tService Type: "+rs.getString(4)+"\tService Name: "+rs.getString(5)+"\tMiles: "+rs.getInt(6));					
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		
 		int optionSelected=-1;
 		while(optionSelected!=1)
 		{
@@ -236,6 +319,24 @@ public class Manager extends Employee{
 	}
 	public void serviceHistory()
 	{
+		List<Integer> customerIds=new ArrayList<>();
+		try
+		{
+String sqlQuery1 = "select c.customer_id from customer c,appointment a where a.customer_id=c.customer_id and c.service_center_id = '"+this.getCenterId()+"'";
+PreparedStatement pstmt1 = conn.prepareStatement(sqlQuery1);
+ResultSet rs1 = pstmt1.executeQuery();
+
+while(rs1.next())
+{	
+	customerIds.add(rs1.getInt(1));
+	//System.out.println(rs.getTimestamp(1)+"\t"+rs.getString(2)+"\t\t"+rs1.getString(1)+"\t\t\t"+rs.getString(4)+"\t");
+}
+		}catch(SQLException ex)
+		{
+			ex.printStackTrace();
+		}
+		for(int k:customerIds)
+			System.out.print(k);
 		//TODO: Call a stored procedure to get service history
 		int optionSelected=-1;
 		while(optionSelected!=1)

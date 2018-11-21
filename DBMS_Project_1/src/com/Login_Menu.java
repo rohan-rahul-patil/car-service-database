@@ -42,10 +42,20 @@ public class Login_Menu {
 	public static PreparedStatement pstmt;
 	public static ResultSet rs;
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws SQLException
 	{
 		Employee e=new Employee(950932130);
-		e.viewProfile();
+		Manager m=new Manager();
+		//m.inventory();
+		//m.orderHistory();
+		//m.notifications();
+		//m.carServiceDetails();
+		//m.notificationsDetail();
+		m.serviceHistory();
+		//e.updateProfile();
+		//e.viewCustomerProfile();
+		e.conn.close();
+		e.mc.endConnection(e.conn);
 	}
 	/*
 	public static void main(String[] args) throws SQLException {

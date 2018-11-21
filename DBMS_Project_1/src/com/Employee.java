@@ -110,7 +110,6 @@ public class Employee {
 		case 3: setEmail(newValue);break;
 		case 4: setPhoneNumber(newValue);break;
 		case 5: setPassword(newValue);break;
-		default: System.out.println("The given choice is invalid"); break;
 		}
 		System.out.println("Please enter one of the choices below:");
 		System.out.println("1.Name \n2.Address \n3.Email Address \n4.Phone number \n5.Password \n6.Go back");
@@ -130,23 +129,73 @@ public class Employee {
 	cstmt.setString(5, email);
 	cstmt.setString(6, phoneNumber);
 	cstmt.setString(7, password);
-	
+	//System.out.println("New parameters are: "+cstmt.getInt(2)+cstmt.getString(3)+cstmt.getString(4)+cstmt.getString(5)+cstmt.getString(6)+cstmt.getString(7));
 	cstmt.executeUpdate();
 						
 	int success = cstmt.getInt(1);
 	if(success==1)
 		System.out.println("Employee profile is successfully updated.");
+	profile();
 	}catch(SQLException ex)
 	{
 		ex.printStackTrace();
 	}
 	}
 	
-	public void viewCustomerProfile()
+	public void viewCustomerProfile() 
 	{
 		System.out.println("Please enter email address of the customer to view its complete profile:");
 		String customerEmail=in.next();
 		//TODO: call a stored procedure to get the profile of the customer and display the result of the stored proc on console
+		
+		String s = "select * from table(get_user_details('"+customerEmail+"'))";
+		//950932130
+				PreparedStatement ps;
+				try {
+					ps = conn.prepareStatement(s);
+				
+				ResultSet rs = ps.executeQuery(s);
+				while(rs.next())
+				{
+					System.out.println("\nCustomer Id: "+rs.getString(4)+"\tName:"+rs.getString(1)+"\tAddress: "+rs.getString(5)+"\tEmail: "+rs.getString(3)+"\tPhone number: "+rs.getString(2));					
+				}
+				   System.out.println(" ResultSet : "+rs);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+				s = "select * from table(get_user_details('"+customerEmail+"'))";
+				//950932130
+						
+						try {
+							ps = conn.prepareStatement(s);
+						
+						ResultSet rs = ps.executeQuery(s);
+						while(rs.next())
+						{
+							System.out.println("\nCustomer Id: "+rs.getString(4)+"\tName:"+rs.getString(1)+"\tAddress: "+rs.getString(5)+"\tEmail: "+rs.getString(3)+"\tPhone number: "+rs.getString(2));					
+						}
+						   System.out.println(" ResultSet : "+rs);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						try
+						{
+			String sqlQuery1 = "select customer_id from customer where email = '"+customerEmail+"'";
+			PreparedStatement pstmt1 = conn.prepareStatement(sqlQuery1);
+			ResultSet rs1 = pstmt1.executeQuery();
+				while(rs1.next())
+				{	
+					//System.out.println(rs.getTimestamp(1)+"\t"+rs.getString(2)+"\t\t"+rs1.getString(1)+"\t\t\t"+rs.getString(4)+"\t");
+					System.out.format("%20s %40s %30s %10s", rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getInt(4), rs1.getTimestamp(5), rs1.getInt(6), rs1.getString(7), rs1.getTimestamp(8));
+					System.out.println();
+				}
+						}catch(SQLException ex)
+						{
+							ex.printStackTrace();
+						}
 		int optionSelected=-1;
 		while(optionSelected!=1)
 		{
